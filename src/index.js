@@ -24,7 +24,10 @@ function getCountries() {
 function fetchCountrys() {
   return fetch(`https://restcountries.eu/rest/v2/name/${inputEll.value}`).then(
     response => {
-      return response.json();
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error(response.statusText);
     },
   );
 }
